@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment 
+metadata: 
+  name: demo-dep 
+spec: 
+  selector: 
+    matchLabels: 
+      app: demo 
+  replicas: 5 # tells deployment to run 2 pods matching the template 
+  template:
+    metadata: 
+      labels: 
+        app: demo 
+    spec: 
+      containers: 
+      - name: demo 
+        image: sampleregistery.azurecr.io/sample:#{Build.BuildId}#
+        ports: 
+        - containerPort: 8080 
+--- 
+kind: Service 
+apiVersion: v1 
+metadata: 
+  name: demo-service 
+spec: 
+  selector: 
+    app: demo 
+  ports: 
+  - protocol: TCP 
+    port: 8080 
+    targetPort: 8080 
+  type: LoadBalancer 
