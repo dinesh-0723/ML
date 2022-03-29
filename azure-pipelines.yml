@@ -40,5 +40,5 @@ steps:
     tags:  |
       $(tag)
 - bash:  |
-    echo "echo "This is Build Id $(Build.BuildId)"
-    echo "This is Build Number $(Build.BuildNumber)"
+      echo "echo "This is Build Id $(Build.BuildId)"
+      echo "This is Build Number $(Build.BuildNumber)"
