@@ -38,7 +38,7 @@ steps:
     command: 'buildAndPush'
     Dockerfile: '**/AzureDockerfile'
     tags:  |
-      $(tag)
+      $(Build.BuildId)
 - bash:  |
       echo "echo "This is Build Id $(Build.BuildId)"
       echo "This is Build Number $(Build.BuildNumber)"
