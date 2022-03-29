@@ -9,6 +9,8 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  tag: '$(Build.BuildNumber)'
 steps:
 - task: Maven@3
   inputs:
@@ -35,4 +37,5 @@ steps:
     repository: 'mlimage'
     command: 'buildAndPush'
     Dockerfile: '**/AzureDockerfile'
-    tags: '$(Build.Buildid)'
+    tags:  |
+      $(tag)
