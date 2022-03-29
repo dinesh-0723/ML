@@ -14,7 +14,7 @@ spec:
     spec: 
       containers: 
       - name: demo 
-        image: sampleregistery.azurecr.io/mlimage
+        image: sampleregistery.azurecr.io/mlimage_$(Build.BuilNumber)
         ports: 
         - containerPort: 8080 
 --- 
