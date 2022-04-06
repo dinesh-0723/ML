@@ -15,4 +15,4 @@ steps:
     azureSubscription: 'sp-service-connection'
     scriptType: 'bash'
     scriptLocation: 'inlineScript'
-    inlineScript: 'kubectl get pods'
+    inlineScript: 'az group list -o table'
