@@ -17,10 +17,19 @@ steps:
     scriptLocation: 'inlineScript'
     inlineScript: 'az group list -o table'
 - task: AzurePowerShell@5
+  displayName: 'Adding IP Address'
   inputs:
     azureSubscription: 'dinesh (096c8e0f-3031-42c7-93f0-0af12a39276a)'
     ScriptType: 'InlineScript'
     Inline: |
       $HostedIPAddress = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
       Add-AzWebAppAccessRestrictionRule -ResourceGroupName "$(resourceGroupName)" -WebAppName "$(SonarWebAppName)" -Name "AzureDevOpAgent$(Agent.MachineName)" -Priority 111 -Action Allow -IpAddress "$HostedIPAddress/32"
+    azurePowerShellVersion: 'LatestVersion'
+- task: AzurePowerShell@5
+  displayName: 'Removing IP Address'
+  inputs:
+    azureSubscription: 'dinesh (096c8e0f-3031-42c7-93f0-0af12a39276a)'
+    ScriptType: 'InlineScript'
+    Inline: |
+      Remove-AzWebAppAccessRestrictionRule -ResourceGroupName "$(resourceGroupName)" -WebAppName "$(SonarWebAppName)" -Name "AzureDevOpAgent$(Agent.MachineName)"
     azurePowerShellVersion: 'LatestVersion'
