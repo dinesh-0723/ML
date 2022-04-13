@@ -25,6 +25,18 @@ steps:
       $HostedIPAddress = Invoke-RestMethod http://ipinfo.io/json | Select -exp ip
       Add-AzWebAppAccessRestrictionRule -ResourceGroupName "$(resourceGroupName)" -WebAppName "$(SonarWebAppName)" -Name "AzureDevOpAgent$(Agent.MachineName)" -Priority 111 -Action Allow -IpAddress "$HostedIPAddress/32"
     azurePowerShellVersion: 'LatestVersion'
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your commands here
+      
+      echo 'Hello world'
+      echo 'Hello world'
+      echo 'Hello world1'
+      echo 'Hello world2'
+      echo 'Hello world3'
+      echo 'Hello world4'  
 - task: AzurePowerShell@5
   displayName: 'Removing IP Address'
   inputs:
